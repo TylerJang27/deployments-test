@@ -1,0 +1,42 @@
+name: Deployment
+
+concurrency:
+  group: dev-api
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Environment to target'
+        required: true
+        default: 'dev-api'
+        type: choice
+        options:
+        - dev-api
+        - staging-api
+        - prod-api
+      extra:
+        description: 'Extra info'
+        required: true
+        default: 'none'
+        type: string
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    environment: ${{ github.inputs.target}}
+    steps:
+      - name: first
+        shell: bash
+        run: echo "first step!"
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: ${{ github.inputs.target}}
+    needs: [dry-run]
+    steps:
+      - name: confirmed
+        shell: bash
+        run: echo "confirmed step!"
+        # ...deployment-specific steps
+  
