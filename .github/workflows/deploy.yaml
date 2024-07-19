@@ -24,7 +24,7 @@ on:
 jobs:
   dry-run:
     runs-on: ubuntu-latest
-    environment: ${{ github.inputs.target}}
+    environment: dev-api
     steps:
       - name: first
         shell: bash
