@@ -24,7 +24,7 @@ on:
 jobs:
   dry-run:
     runs-on: ubuntu-latest
-    environment: dev-api
+    # environment: dev-api
     steps:
       - name: first
         shell: bash
@@ -32,7 +32,7 @@ jobs:
 
   deployment:
     runs-on: ubuntu-latest
-    environment: ${{ github.inputs.target}}
+    environment: dev-api
     needs: [dry-run]
     steps:
       - name: confirmed
