@@ -23,8 +23,8 @@ on:
 
 jobs:
   dry-run:
-    runs-on: ${{ github.inputs.target }}
-    environment: dev-api
+    runs-on: ubuntu-latest
+    environment: ${{ github.inputs.target }}
     steps:
       - name: first
         shell: bash
